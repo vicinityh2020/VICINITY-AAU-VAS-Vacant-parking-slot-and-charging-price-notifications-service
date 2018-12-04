@@ -16,7 +16,7 @@ Adapter runs on Python 3.6.
 # Adapter changelog by version
 Adapter releases are as aau_adapter_x.y.z.py
 
-## 0.0.1
+## 1.0.0
 Start version, it works with agent-service-full-0.6.3.jar, and it receives three parking slot usage states and publishes an event with vacant parking slot account and real-time EV charging price.
 
 # Functionality and API
