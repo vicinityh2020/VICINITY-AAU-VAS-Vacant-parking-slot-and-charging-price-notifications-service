@@ -1,4 +1,4 @@
-# VICINITY-AAU-VAS- Vacant-parking-slot-and-charging-price-notifications-service
+# VICINITY-AAU-VAS-Vacant-parking-slot-and-charging-price-notifications-service
 This documentation describes the adapter of AAU VAS - Vacant parking slot and charging price notifications service.
 
 # Infrastructure overview
@@ -23,12 +23,12 @@ Start version, it works with agent-service-full-0.6.3.jar, and it receives three
 
 ## Publish an event to the subscribers. 
 ### Endpoint:
-            PUT /objects/{oid}/events/{eid}
+            PUT : /remote/objects/{oid}/events/{eid}
 Publish the vacant parking slot number, EV charging price and current time. Users can receive the number of free parking slot and charging price automatically.
 ### Return:
 After subscribing the VAS successfully, the subscriber receives a response for instance:  
 {  
     "value": "3.15",  
     "free": "2",  
-    "time": "2018-11-10"  
+    "time": "2018-11-10 11:30:29"  
 }
