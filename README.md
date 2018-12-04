@@ -1,8 +1,9 @@
-# VICINITY-AAU-VAS-Vacant-parking-slot-and-charging-price-notifications-service
-This documentation describes the adapter of AAU VAS - Vacant parking slot and charging price notifications service
+# VICINITY-AAU-VAS- Vacant-parking-slot-and-charging-price-notifications-service
+This documentation describes the adapter of AAU VAS - Vacant parking slot and charging price notifications service.
+
 # Infrastructure overview
 
-Parking slot usage data is collected through VICINITY by using three parking sensors to achieve monitoring function. A residential microgrid, which consists of PV, wind turbine and battery, is emulated in AAU IoT-microgrid Lab. The residential microgrid is assumed to supply power to EV chargers in the three parking slots. The real-time charging price is calculated by considering the simulated real-time utility electricity price, state-of-charge of batteries, and forecasts of the PV and wind turbine power generation. The parking slot usage and the real-time charging price will be sent automatically to users after subscribing Optimal Usage of Parking Slots by Considering Energy Costs VAS.
+Parking slot usage data is collected through VICINITY by using three parking sensors to achieve monitoring function. A residential microgrid, which consists of PV, wind turbine and battery, is emulated in AAU IoT-microgrid Lab. The residential microgrid is assumed to supply power to EV chargers in the three parking slots. The real-time charging price is calculated by considering the simulated real-time utility electricity price, state-of-charge of batteries, and forecasts of the PV and wind turbine power generation. The parking slot usage and the real-time charging price will be sent automatically to users after subscribing the Vacant parking slot and charging price notifications service VAS.
 
 Adapter serves as the interface between VICINITY and LabVIEW enabling to use all required interaction patterns.
 
@@ -16,16 +17,18 @@ Adapter runs on Python 3.6.
 Adapter releases are as aau_adapter_x.y.z.py
 
 ## 0.0.1
-Start version, it works with agent-service-full-0.6.3.jar, and it receives three parking slot usage states and publishes an event with vacant parking slot number and real-time EV charging price.
+Start version, it works with agent-service-full-0.6.3.jar, and it receives three parking slot usage states and publishes an event with vacant parking slot account and real-time EV charging price.
 
 # Functionality and API
 
-## Read residential microgrid operation states
+## Publish an event to the subscribers. 
 ### Endpoint:
-            GET /remote/objects/{oid}/properties/{pid}
-Return last known value and time received by the VAS. The “oid” is UUID of the VAS and “pid” is a property identifier. Users can read generated active power outputs of PV and WT, the SoC of batteries, and active power consumption of the microgrid.
-
-## Subscribe to event channel
-### Endpoint:
-            POST /objects/{oid}/events/{eid}
-Return last vacant parking slot number, EV charging price and time received by the VAS. The “oid” is UUID of the VAS and “eid” is an event identifier. Users can receive the number of free parking slot and charging price automatically.
+            PUT /objects/{oid}/events/{eid}
+Publish the vacant parking slot number, EV charging price and current time. Users can receive the number of free parking slot and charging price automatically.
+### Return:
+After subscribing the VAS successfully, the subscriber receives a response for instance:  
+{  
+    "value": "3.15",  
+    "free": "2",  
+    "time": "2018-11-10"  
+}
